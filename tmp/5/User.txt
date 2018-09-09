@@ -1,0 +1,15 @@
+package com.vismus.saftooshare.db.remote.model;
+
+public class User {
+
+    public String name;
+    public String signUpDate;
+    // TODO: add profile picture
+    public String lastActivityDate;
+
+    public User(String name, String signUpDate, String lastActivityDate){
+        this.name = name;
+        this.signUpDate = signUpDate;
+        this.lastActivityDate = lastActivityDate;
+    }
+}

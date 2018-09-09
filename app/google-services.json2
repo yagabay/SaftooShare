@@ -34,10 +34,10 @@
       ],
       "services": {
         "analytics_service": {
-          "status": 1
+          "sharingStatus": 1
         },
         "appinvite_service": {
-          "status": 2,
+          "sharingStatus": 2,
           "other_platform_oauth_client": [
             {
               "client_id": "522253496735-djbrjehk2adj3boosanrt7esos9jg2ok.apps.googleusercontent.com",
@@ -46,7 +46,7 @@
           ]
         },
         "ads_service": {
-          "status": 2
+          "sharingStatus": 2
         }
       }
     },
@@ -78,10 +78,10 @@
       ],
       "services": {
         "analytics_service": {
-          "status": 1
+          "sharingStatus": 1
         },
         "appinvite_service": {
-          "status": 2,
+          "sharingStatus": 2,
           "other_platform_oauth_client": [
             {
               "client_id": "522253496735-djbrjehk2adj3boosanrt7esos9jg2ok.apps.googleusercontent.com",
@@ -90,7 +90,7 @@
           ]
         },
         "ads_service": {
-          "status": 2
+          "sharingStatus": 2
         }
       }
     }

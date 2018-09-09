@@ -22,25 +22,8 @@ import java.util.Random;
 
 public class Utils {
 
-    public enum MediaType{
-        PICTURE,
-        VIDEO,
-        UNKNOWN
-    }
-
-    public static String getBasePath(){
-        return Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "SaftooShare";
-    }
-
-    public static boolean createAppFolder(){
-        File path = new File(getBasePath());
-        if (!path.exists()) {
-            if (!path.mkdirs()) {
-                return false;
-            }
-        }
-        return true;
-    }
+    public static String APP_BASE_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SaftooShare/";
+    public static String APP_SHARED_ITEMS_DIR = APP_BASE_DIR + "/Shared/";
 
     public static boolean isFileExist(String filePath){
         return new File(filePath).exists();
@@ -50,17 +33,21 @@ public class Utils {
         Toast.makeText(context, (status ? "success: " : "fail: ") + desc, Toast.LENGTH_SHORT).show();
     }
 
-    public static MediaType getMediaType(String filePath){
-        String extension = getFileExtension(filePath);
-        if(extension.equals("jpg")){
-            return MediaType.PICTURE;
-        }
-        else if(extension.equals("mp4")) {
-            return MediaType.VIDEO;
-        }
-        else{
-            return MediaType.UNKNOWN;
-        }
+    public static String getCoreFileName(String fileName){
+        return fileName.substring(fileName.lastIndexOf("/") + 1, fileName.length() );
+    }
+
+    public static String getBasePath(){
+        return Environment.getExternalStorageDirectory().getAbsolutePath() + "/saftoosh";
+    }
+
+    public static String getAppBaseDir(){
+        return APP_BASE_DIR;
+    }
+
+
+    public static File[] getFilesInDir(String dir) {
+        return new File(dir).listFiles();
     }
 
     public static void copy(File src, File dst) throws IOException {
@@ -81,7 +68,19 @@ public class Utils {
         return BitmapFactory.decodeFile(filePath, options);
     }
 
-    public static String getFilePathFromUri(final Context context, final Uri uri) {
+    public static Bitmap getThumbBitmap(Bitmap bitmap) {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        if(width > height){
+            return Bitmap.createBitmap(bitmap, (width - height) / 2, 0, height, height);
+        }
+        else if(height > width){
+            return Bitmap.createBitmap(bitmap, 0, (height - width) / 2, width, width);
+        }
+        return bitmap;
+    }
+
+    public static String getPathFromUri(final Context context, final Uri uri) {
 
         final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
 
@@ -126,7 +125,7 @@ public class Utils {
                     contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
                 }
 
-                final String selection = "id=?";
+                final String selection = "_id=?";
                 final String[] selectionArgs = new String[] {
                         split[1]
                 };
@@ -161,7 +160,7 @@ public class Utils {
     }
 
     public static String getFileExtension(String fileName){
-        return fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
+        return fileName.substring(fileName.lastIndexOf("."), fileName.length());
     }
 
     /* HELPERS */

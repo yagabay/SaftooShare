@@ -1,0 +1,78 @@
+
+//package com.vismus.saftooshare;
+//
+//        import android.graphics.Bitmap;
+//        import android.support.v7.widget.RecyclerView;
+//        import android.view.LayoutInflater;
+//        import android.view.View;
+//        import android.view.ViewGroup;
+//        import android.widget.ImageView;
+//
+//        import com.vismus.saftooshare.db.SharedMediaItem;
+//
+//        import java.util.List;
+//
+//public class SharedMediaItemsRecyclerViewAdapter extends RecyclerView.Adapter<SharedMediaItemsRecyclerViewAdapter.ViewHolder> {
+//
+//    private List<SharedMediaItem> _items;
+//
+//    public SharedMediaItemsRecyclerViewAdapter(List<SharedMediaItem> items) {
+//        _items = items;
+//    }
+//
+//    @Override
+//    public int getItemCount() {
+//        return _items.size();
+//    }
+//
+//    @Override
+//    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+//        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+//        View view = inflater.inflate(R.layout.media_item_display, parent, false);
+//        return new ViewHolder(view);
+//    }
+//
+//    @Override
+//    public void onBindViewHolder(ViewHolder holder, final int position) {
+//        SharedMediaItem sharedMediaItem = _items.get(position);
+//
+//        // thumb
+//        Bitmap bitmap = Utils.readBitmapFromFile(sharedMediaItem.getFilePath());
+//        Bitmap thumbBitmap = Utils.getSquareBitmap(bitmap);
+//        holder.imvMediaItemThumb.setImageBitmap(thumbBitmap);
+//
+//        // sharing sharingStatus
+//        SharedMediaItem.SharingStatus sharingStatus = sharedMediaItem.getSharingStatus();
+//        int imgResourceId = 0;
+//        switch(sharingStatus){
+//            case SENT: imgResourceId = R.drawable.ic_item_sent;
+//                break;
+//            case RECEIVED: imgResourceId = R.drawable.ic_item_received;
+//                break;
+//            case SEEN: imgResourceId = R.drawable.ic_item_seen;
+//            default: break;
+//        }
+//        holder.imvSharingStatus.setImageResource(imgResourceId);
+//    }
+//
+//    public class ViewHolder extends RecyclerView.ViewHolder {
+//        public ImageView imvMediaItemThumb;
+//        public ImageView imvSharingStatus;
+//
+//        public ViewHolder(View view) {
+//            super(view);
+//            imvMediaItemThumb = view.findViewById(R.id.imv_shared_item);
+//            imvSharingStatus = view.findViewById(R.id.imv_sharing_status);
+//        }
+//    }
+//
+//    public void setItems(List<SharedMediaItem> items){
+//        _items = items;
+//        notifyDataSetChanged();
+//    }
+//}
+
+
+//Bitmap bitmap = Utils.readBitmapFromFile(sharedMediaItem.getFilePath());
+//Bitmap thumbBitmap = Utils.getSquareBitmap(bitmap);
+//holder.imvMediaItemThumb.setImageBitmap(thumbBitmap);

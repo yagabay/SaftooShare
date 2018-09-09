@@ -8,25 +8,18 @@
     android:viewportHeight="200">
 
     <path
-        android:fillColor="#AAAAAA"
+        android:strokeColor="#AAAAAA"
+        android:strokeWidth="8"
         android:pathData="
             M70,100
             a1,1 0 1,1 60,0
             a1,1 0 1,1 -60,0"/>
 
     <path
-        android:strokeColor="#AAAAAA"
-        android:strokeWidth="8"
+        android:fillColor="#AAAAAA"
         android:pathData="
-            M30,100
-            a2.7,1 0 1,0 140,0
-            a2.7,1 0 1,0 -140,0"/>
+            M95,100
+            a1,1 0 1,1 10,0
+            a1,1 0 1,1 -10,0"/>
 
 </vector>
-
-    <!--<filePathpath-->
-    <!--android:fillColor="#FFFFFF"-->
-    <!--android:pathData="-->
-    <!--M80,100-->
-    <!--a1,1 0 1,1 40,0-->
-    <!--a1,1 0 1,1 -40,0"/>-->

@@ -3,85 +3,17 @@ package com.vismus.saftooshare;
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Random;
 
 public class Utils {
 
-    public enum MediaType{
-        PICTURE,
-        VIDEO,
-        UNKNOWN
-    }
-
-    public static String getBasePath(){
-        return Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "SaftooShare";
-    }
-
-    public static boolean createAppFolder(){
-        File path = new File(getBasePath());
-        if (!path.exists()) {
-            if (!path.mkdirs()) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public static boolean isFileExist(String filePath){
-        return new File(filePath).exists();
-    }
-
-    public static void toastStatus(Context context, boolean status, String desc) {
-        Toast.makeText(context, (status ? "success: " : "fail: ") + desc, Toast.LENGTH_SHORT).show();
-    }
-
-    public static MediaType getMediaType(String filePath){
-        String extension = getFileExtension(filePath);
-        if(extension.equals("jpg")){
-            return MediaType.PICTURE;
-        }
-        else if(extension.equals("mp4")) {
-            return MediaType.VIDEO;
-        }
-        else{
-            return MediaType.UNKNOWN;
-        }
-    }
-
-    public static void copy(File src, File dst) throws IOException {
-        try (InputStream in = new FileInputStream(src)) {
-            try (OutputStream out = new FileOutputStream(dst)) {
-                byte[] buf = new byte[1024];
-                int len;
-                while ((len = in.read(buf)) > 0) {
-                    out.write(buf, 0, len);
-                }
-            }
-        }
-    }
-
-    public static Bitmap readBitmapFromFile(String filePath){
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-        return BitmapFactory.decodeFile(filePath, options);
-    }
-
-    public static String getFilePathFromUri(final Context context, final Uri uri) {
+    public static String getPathFromUri(final Context context, final Uri uri) {
 
         final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
 
@@ -126,7 +58,7 @@ public class Utils {
                     contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
                 }
 
-                final String selection = "id=?";
+                final String selection = "_id=?";
                 final String[] selectionArgs = new String[] {
                         split[1]
                 };

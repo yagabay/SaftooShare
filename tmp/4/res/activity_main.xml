@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.vismus.saftooshare.activities.MainActivity"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="10dp">
+
+    <TextView
+        android:id="@+id/txv_media_you_shared"
+        android:text="MEDIA YOU SHARED"
+        android:textSize="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rsv_media_items"
+        tools:listitem="@layout/media_item"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/txv_media_you_shared"
+        android:layout_marginTop="10dp"/>
+
+</RelativeLayout>

@@ -1,0 +1,67 @@
+//            final Uri downloadedItemName;
+//            FirebaseAuth.getInstance().signInWithEmailAndPassword(USERNAME, PASSWORD)
+//                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<AuthResult> task) {
+//                            if(task.isSuccessful()) {
+//                                final String itemPath = Utils.getPathFromUri(getApplicationContext(), _sharedItemUri);
+//                                final String itemNewName = Utils.generateRandomIdentifier() + "." + Utils.getFileExtension(itemPath);
+//                                FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+//                                firebaseStorage.getReference().child(itemNewName).putFile(_sharedItemUri)
+//                                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                                            @Override
+//                                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                                                saveSharedItemToFile(itemNewName);
+//                                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                                                startActivity(intent);
+//                                            }
+//                                        })
+//                                        .addOnFailureListener(new OnFailureListener() {
+//                                            @Override
+//                                            public void onFailure(@NonNull Exception exception) {
+//                                                Toast.makeText(ShareMediaItemActivity.this, "Error: failed to upload file " + itemNewName, Toast.LENGTH_LONG).show();
+//                                            }
+//                                        });
+//
+//                            }
+//                            else {
+//                                Toast.makeText(ShareMediaItemActivity.this, "Error: failed to sign-in", Toast.LENGTH_LONG).show();
+//                            }
+//                        }
+//                    });
+//        }
+
+    void addMediaItems() {
+        List<MediaItemDisplayFragment> items = new ArrayList<>();
+
+        UtilsDbg.saveResourceToFile(getContext(), R.raw.pic01, Utils.getBasePath() + "/Pictures", "pic01.jpg");
+        MediaItemDisplayFragment f1 = new PictureItemDisplayFragment();
+        Bundle a1 = new Bundle();
+        a1.putString("FILE_PATH", Utils.getBasePath() + "/Pictures/pic01.jpg");
+        f1.setArguments(a1);
+        items.add(f1);
+
+        UtilsDbg.saveResourceToFile(getContext(), R.raw.vid01, Utils.getBasePath() + "/Videos", "vid01.mp4");
+        MediaItemDisplayFragment f2 = new VideoItemDisplayFragment();
+        Bundle a2 = new Bundle();
+        a2.putString("FILE_PATH", Utils.getBasePath() + "/Videos/vid01.mp4");
+        f2.setArguments(a2);
+        items.add(f2);
+
+        UtilsDbg.saveResourceToFile(getContext(), R.raw.pic02, Utils.getBasePath() + "/Pictures", "pic02.jpg");
+        MediaItemDisplayFragment f3 = new PictureItemDisplayFragment();
+        Bundle a3 = new Bundle();
+        a3.putString("FILE_PATH", Utils.getBasePath() + "/Pictures/pic02.jpg");
+        f3.setArguments(a3);
+        items.add(f3);
+
+        UtilsDbg.saveResourceToFile(getContext(), R.raw.pic03, Utils.getBasePath() + "/Pictures", "pic03.jpg");
+        MediaItemDisplayFragment f4 = new PictureItemDisplayFragment();
+        Bundle a4 = new Bundle();
+        a4.putString("FILE_PATH", Utils.getBasePath() + "/Pictures/pic03.jpg");
+        f4.setArguments(a4);
+        items.add(f4);
+
+        _mediaDisplayPagerAdapter.setItems(items);
+        _mediaDisplayPagerAdapter.notifyDataSetChanged();
+    }

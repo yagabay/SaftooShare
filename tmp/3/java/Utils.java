@@ -28,19 +28,8 @@ public class Utils {
         UNKNOWN
     }
 
-    public static String getBasePath(){
-        return Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "SaftooShare";
-    }
-
-    public static boolean createAppFolder(){
-        File path = new File(getBasePath());
-        if (!path.exists()) {
-            if (!path.mkdirs()) {
-                return false;
-            }
-        }
-        return true;
-    }
+    public static String APP_BASE_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SaftooShare/";
+    public static String APP_SHARED_ITEMS_DIR = APP_BASE_DIR + "/Shared/";
 
     public static boolean isFileExist(String filePath){
         return new File(filePath).exists();
@@ -81,7 +70,21 @@ public class Utils {
         return BitmapFactory.decodeFile(filePath, options);
     }
 
-    public static String getFilePathFromUri(final Context context, final Uri uri) {
+    public static Bitmap getSquareBitmap(Bitmap bitmap) {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        if (width == height) {
+            return bitmap;
+        }
+        if(width > height){
+            return Bitmap.createBitmap(bitmap, (width - height) / 2, 0, height, height);
+        }
+        else{
+            return Bitmap.createBitmap(bitmap, 0, (height - width) / 2, width, width);
+        }
+    }
+
+    public static String getPathFromUri(final Context context, final Uri uri) {
 
         final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
 
@@ -126,7 +129,7 @@ public class Utils {
                     contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
                 }
 
-                final String selection = "id=?";
+                final String selection = "_id=?";
                 final String[] selectionArgs = new String[] {
                         split[1]
                 };
